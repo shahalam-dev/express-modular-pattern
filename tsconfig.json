@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2022",                     /* Modern JS features */
+    "module": "NodeNext",                   /* For Node.js ESM support */
+    "moduleResolution": "NodeNext",         /* Match Node.js resolution */
+    "lib": ["ES2022"],                      /* Modern language features */
+    "allowJs": false,                       /* Don’t allow plain .js files */
+    "checkJs": false,                       /* Don’t type-check .js */
+    "resolveJsonModule": true,              /* Allow importing .json files */
+    "esModuleInterop": true,                /* Fix default import issues */
+    "forceConsistentCasingInFileNames": true,
+
+    /* Strictness */
+    "strict": true,                         /* Enable all strict checks */
+    "skipLibCheck": true,                   /* Skip type checks of .d.ts files */
+
+    /* Output */
+    "outDir": "dist",                       /* Compiled output */
+    "rootDir": "src",                       /* Source files location */
+    "noEmitOnError": true,                  /* Don’t emit if TS errors */
+
+    /* Module & Imports */
+    "allowSyntheticDefaultImports": true,   /* Allow default import from CJS */
+    "isolatedModules": true,                /* Needed for modern bundlers */
+    "types": ["node"],                      /* Auto-include Node.js types */
+
+    /* Debugging */
+    "sourceMap": true                       /* Generate .map files for debugging */
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
