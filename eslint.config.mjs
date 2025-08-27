@@ -2,29 +2,43 @@ import js from '@eslint/js';
 import globals from 'globals';
 import prettierPlugin from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import typescriptParser from '@typescript-eslint/parser';
+import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 
 export default [
   js.configs.recommended,
   prettierConfig,
   {
-    files: ['**/*.ts'],
+    files: ['**/*.{js,ts}'],
     languageOptions: {
-      parser: await import('@typescript-eslint/parser'),
+      parser: typescriptParser,
       parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
         project: './tsconfig.json',
       },
       globals: {
         ...globals.node,
-        ...globals.browser,
       },
     },
     plugins: {
-      '@typescript-eslint': await import('typescript-eslint'),
+      '@typescript-eslint': typescriptPlugin,
       prettier: prettierPlugin,
     },
     rules: {
-      'prettier/prettier': 'error', // Show Prettier errors as ESLint errors
-      // Add TypeScript-specific rules here
+      'prettier/prettier': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/no-explicit-any': 'error',
     },
+  },
+  {
+    ignores: ['node_modules/', 'dist/', 'build/'],
   },
 ];
